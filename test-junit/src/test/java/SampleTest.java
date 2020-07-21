@@ -54,7 +54,7 @@ public class SampleTest {
     public void openPage() {
         driver.get("https://otus.ru/");
         logger.info("Главная OTUS");
-        assertTrue(driver.findElement(By.cssSelector("title")).getText().contains("1Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям"));
+        assertTrue(driver.findElement(By.cssSelector("title")).getText().contains("123Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям"));
 /*        String login = "gewanej505@pastmao.com";
         String password = "gewanej505";
         String locator = "button.header2__auth";
