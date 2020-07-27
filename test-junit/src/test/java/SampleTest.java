@@ -2,17 +2,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
-
-import static org.openqa.selenium.By.cssSelector;
 
 public class SampleTest {
 
@@ -76,7 +70,7 @@ public class SampleTest {
 
  */
 
-        driver.get("https://ng-bootstrap.github.io/#/components/alert/examples");
+ /*     driver.get("https://ng-bootstrap.github.io/#/components/alert/examples");
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
         WebDriverWait wait = new WebDriverWait(driver, 5L, 125L);
@@ -91,6 +85,23 @@ public class SampleTest {
         logger.info(secondMessage);
         Assert.assertNotEquals(firstMessage, secondMessage);
 
+
+    }
+*/
+
+
+        driver.get("https://dwweb.ru/page/js/002_alert_javascript.html");
+        WebDriverWait wait = new WebDriverWait(driver, 10L, 125L);
+//        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+ /*       driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
+        wait.until(drv -> drv.findElements(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).size() < 2);
+        String secondMessage;
+        secondMessage = driver.findElement(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).getAttribute("OuterText");
+        logger.info(firstMessage);
+        logger.info(secondMessage);
+        Assert.assertNotEquals(firstMessage, secondMessage);
+*/
 
     }
 
