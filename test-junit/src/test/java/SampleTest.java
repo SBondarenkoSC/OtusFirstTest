@@ -2,11 +2,17 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.By.cssSelector;
 
 public class SampleTest {
 
@@ -52,10 +58,10 @@ public class SampleTest {
 
     @Test
     public void openPage() {
-        driver.get("https://otus.ru/");
+/*      driver.get("https://otus.ru/");
         logger.info("Главная OTUS");
         assertTrue(driver.findElement(By.cssSelector("title")).getText().contains("123Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям"));
-/*        String login = "gewanej505@pastmao.com";
+        String login = "gewanej505@pastmao.com";
         String password = "gewanej505";
         String locator = "button.header2__auth";
         driver.findElement(By.cssSelector(locator)).click();
@@ -69,10 +75,29 @@ public class SampleTest {
         driver.findElement(By.name("fname_latin")).sendKeys("Gewanej");
 
  */
+
+        driver.get("https://ng-bootstrap.github.io/#/components/alert/examples");
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5L, 125L);
+        wait.until(drv -> drv.findElements(By.cssSelector("div > div > div > ngbd-alert-selfclosing > ngb-alert")).size() < 2);
+        String firstMessage;
+        firstMessage = driver.findElement(By.cssSelector("div > div > div > ngbd-alert-selfclosing > ngb-alert")).getAttribute("OuterText");
+        driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
+        wait.until(drv -> drv.findElements(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).size() < 2);
+        String secondMessage;
+        secondMessage = driver.findElement(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).getAttribute("OuterText");
+        logger.info(firstMessage);
+        logger.info(secondMessage);
+        Assert.assertNotEquals(firstMessage, secondMessage);
+
+
     }
 
-    private void assertTrue(boolean text) {
+ /*   private void assertTrue(boolean text) {
     }
+
+  */
 
     @After
     public void setDown() {
