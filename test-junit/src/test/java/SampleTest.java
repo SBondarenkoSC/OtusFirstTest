@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import cucumber.api.CucumberOptions;
 
 public class SampleTest {
 
@@ -90,11 +90,11 @@ public class SampleTest {
 */
 
 
-        driver.get("https://dwweb.ru/page/js/002_alert_javascript.html");
+         driver.get("https://dwweb.ru/page/js/002_alert_javascript.html");
         WebDriverWait wait = new WebDriverWait(driver, 10L, 125L);
-//        wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
- /*       driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
+       driver.findElement(cssSelector("body > ngbd-app > div > component-wrapper > div > div > div.col-12.col-lg-10 > section > div.col-12.col-xl-9.px-md-0.pr-xl-4 > ng-component > ngbd-widget-demo:nth-child(3) > div > div > div > ngbd-alert-selfclosing > p:nth-child(5) > button")).click();
         wait.until(drv -> drv.findElements(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).size() < 2);
         String secondMessage;
         secondMessage = driver.findElement(new By.ByXPath("//div[@class='card-body']//ngb-alert[contains(text(), 'Message successfully changed')]")).getAttribute("OuterText");
